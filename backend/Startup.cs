@@ -1,3 +1,6 @@
+using FourthProj;
+using Microsoft.EntityFrameworkCore;
+
 namespace ProjAPI;
     public class Startup
     {
@@ -9,6 +12,11 @@ namespace ProjAPI;
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
+
+
             services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();

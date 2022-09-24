@@ -1,5 +1,6 @@
 using FourthProj.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FourthProj.Controllers
 {
@@ -9,17 +10,20 @@ namespace FourthProj.Controllers
     public class PatientsController:ControllerBase
     {
          private readonly ILogger<PatientsController> logger;
+          private readonly ApplicationDbContext context;
 
-         public PatientsController(ILogger<PatientsController> logger)
+         public PatientsController(ILogger<PatientsController> logger,ApplicationDbContext context)
          {
             this.logger = logger;
+            this.context = context;
          }
 
          [HttpGet]
          public async Task<ActionResult<List<Patient>>> Get()
          {
             logger.LogInformation("Getting all the patients");
-            return new List<Patient>() {new Patient(){Id=1,Name="Sam"}};
+           
+           return await context.Patients.ToListAsync();
          }
 
          [HttpGet("{Id:int}",Name="getPatient")]
@@ -29,9 +33,11 @@ namespace FourthProj.Controllers
          }
 
          [HttpPost]
-         public ActionResult Post([FromBody] Patient patient)
+         public async Task <ActionResult> Post([FromBody] Patient patient)
          {
-            throw new NotImplementedException();
+            context.Add(patient);
+            await context.SaveChangesAsync();
+            return NoContent();
          }
 
          [HttpPut]

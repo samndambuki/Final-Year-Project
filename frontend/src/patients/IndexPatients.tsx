@@ -2,13 +2,14 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios, { AxiosResponse } from "axios";
 import { patientDTO } from "./patients.models";
+import { urlPatients } from "../endpoints";
 
 
 export default function IndexPatients()
 {
     useEffect(()=>
     {
-        axios.get('https://localhost:7234/api/patients/')
+        axios.get(urlPatients)
         .then((response:AxiosResponse<patientDTO[]>)=>{
             console.log(response.data);
         })
