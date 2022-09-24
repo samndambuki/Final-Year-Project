@@ -20,7 +20,7 @@ export default function FilterPatients()
 
     return(
         <>
-        <h3>Filter Patients</h3>
+        <h3>Generate Patients Report</h3>
         <Formik initialValues={initialValues} 
         onSubmit={values=>console.log(values)}
         >
@@ -59,7 +59,7 @@ export default function FilterPatients()
                         <div className="col-auto">
                             <Button className="btn btn-primary"
                             onClick={()=>formikProps.submitForm()}
-                            >Show Patients</Button>
+                            >Generate Report</Button>
 
                             <Button className="btn btn-danger ms-3"
                             onClick={()=>formikProps.setValues(initialValues)}

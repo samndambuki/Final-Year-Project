@@ -25,7 +25,7 @@ export default function ScheduleForm(props:scheduleFormProps)
                     <DateField displayName="Schedule Appointment" field="availability"/>
                     <Button disabled={formikProps.isSubmitting}
                     type="submit">Save Changes</Button>
-                    <Link to="/schedules" className="btn btn-secondary">Cancel</Link>
+                    <Link to="/doctors" className="btn btn-secondary">Cancel</Link>
                 </Form>
             )}
 

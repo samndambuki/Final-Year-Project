@@ -29,7 +29,7 @@ export default function SpeciatyForm(props:specialtyFormProps)
                  
                 
                  <Button disabled={formikProps.isSubmitting} type='submit'>Save Changes</Button>
-                 <Link className="btn btn-secondary" to="/patients">Cancel</Link>
+                 <Link className="btn btn-secondary" to="/doctors">Cancel</Link>
              </Form>
             )}
         </Formik>

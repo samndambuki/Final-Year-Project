@@ -29,11 +29,7 @@ export default function Menu()
                             </NavLink>
                         </li>
 
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/patients/filter">
-                                Show Patients
-                            </NavLink>
-                        </li>
+                
 
                     </ul>
                 </div>
