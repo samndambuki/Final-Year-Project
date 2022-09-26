@@ -10,9 +10,7 @@ namespace FourthProj
         {
 
         }
-
         public DbSet<Patient> Patients { get; set; }
-
 
     }
 }
