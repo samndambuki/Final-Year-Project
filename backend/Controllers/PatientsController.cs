@@ -1,6 +1,7 @@
 using AutoMapper;
 using FourthProj.DTOs;
 using FourthProj.Entities;
+using FourthProj.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,11 +25,14 @@ namespace FourthProj.Controllers
          }
 
          [HttpGet]
-         public async Task<ActionResult<List<PatientDTO>>> Get()
+         public async Task<ActionResult<List<PatientDTO>>> Get([FromQuery] PaginationDTO paginationDTO)
          {
-            logger.LogInformation("Getting all the patients");
+            
+            var queryable = context.Patients.AsQueryable();
+
+            await HttpContext.InsertParametersPaginationInHeader(queryable);
            
-           var patients = await context.Patients.ToListAsync();
+           var patients = await queryable.OrderBy(x=>x.PatientName).Paginate(paginationDTO).ToListAsync();
 
            return mapper.Map<List<PatientDTO>>(patients);
            
