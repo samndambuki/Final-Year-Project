@@ -13,6 +13,7 @@ import CreateSpecialty from "./specialties/CreateSpecialty";
 import EditSpecialty from "./specialties/EditSpecialty";
 import IndexSpecialties from "./specialties/IndexSpecialties";
 import RedirectToLandingPage from "./utils/RedirectToLandingPage";
+import PatientsReport from "./patients/PatientsReport";
 
 const routes = 
 [
@@ -20,6 +21,7 @@ const routes =
     {path:'/patients/create', component:CreatePatient},
     {path:'/patients/edit/:id(\\d+)', component:EditPatient},
     {path:'/patients/filter', component:FilterPatients},
+    {path:'/patients/report',component:PatientsReport},
 
     {path:'/doctors', component:IndexDoctors, exact:true},
     {path:'/doctors/create', component:CreateDoctor},
