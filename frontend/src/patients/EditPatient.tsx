@@ -7,7 +7,7 @@ export default function EditPatient()
     return(
         <>
         <h3>Edit Patient Details</h3>
-        <PatientForm model={{name:'Samuel Ndambuki',email:'sam.ndambuki08@gmail.com',phonenumber:'0797334258',gender:'Male',location:'Nyeri'}}
+        <PatientForm model={{patientName:'Samuel Ndambuki',email:'sam.ndambuki08@gmail.com',phoneNumber:'0797334258',gender:'Male',location:'Nyeri'}}
         onSubmit={async value => {
             //when the form is posted
             await new Promise(r => setTimeout(r,3000));

@@ -17,7 +17,7 @@ export default function PatientForm(props:patientFormProps)
             props.onSubmit
         }
         validationSchema={Yup.object({
-            name:Yup.string().required('Please Enter Your Name'),
+            patientName:Yup.string().required('Please Enter Your Name'),
             email:Yup.string().required('Please Enter Your Email'),
             phonenumber:Yup.string().required('Please Enter Your Phone Number'),
             gender:Yup.string().required('Please Enter Your Gender'),
@@ -26,9 +26,9 @@ export default function PatientForm(props:patientFormProps)
         >
             {(formikProps)=>(
                  <Form>
-                 <TextField field="name" displayName="Name"/>
+                 <TextField field="patientName" displayName="Name"/>
                  <TextField field="email" displayName="Email"/>
-                 <TextField field="phonenumber" displayName="Phone Number"/>
+                 <TextField field="phoneNumber" displayName="Phone Number"/>
                  <TextField field="gender" displayName="Gender"/>
                  <TextField field="location" displayName="Location"/>
                 

@@ -1,8 +1,9 @@
 export interface patientCreationDTO
 {
-    name:string;
+    
+    patientName:string;
     email:string;
-    phonenumber:string;
+    phoneNumber:string;
     gender:string;
     location:string;
 }
@@ -10,9 +11,9 @@ export interface patientCreationDTO
 export interface patientDTO
 {
     patientId:number;
-    name:string;
+    patientName:string;
     email:string;
-    phonenumber:string;
+    phoneNumber:string;
     gender:string;
     location:string;
 }

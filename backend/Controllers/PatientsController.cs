@@ -39,9 +39,15 @@ namespace FourthProj.Controllers
          }
 
          [HttpGet("{Id:int}",Name="getPatient")]
-         public ActionResult<Patient> Get(int id)
+         public async Task <ActionResult<PatientDTO>> Get(int Id)
          {
-            throw new NotImplementedException();
+            var patient = await context.Patients.FirstOrDefaultAsync(x=>x.PatientId == Id);
+            if(patient == null)
+            {
+               return NotFound(); 
+            }
+
+            return mapper.Map<PatientDTO>(patient);
          }
 
          [HttpPost]
@@ -53,11 +59,33 @@ namespace FourthProj.Controllers
             return NoContent();
          }
 
-         [HttpPut]
-         public ActionResult Put([FromBody] Patient patient)
+         [HttpPut("{id:int}")]
+         public async Task<ActionResult> Put(int id,[FromBody] PatientCreationDTO patientCreationDTO)
          {
-            throw new NotImplementedException();
+            var patient = await context.Patients.FirstOrDefaultAsync(x=>x.PatientId == id );
+            if(patient == null)
+            {
+               return NotFound();
+            }
+
+            patient = mapper.Map(patientCreationDTO,patient);
+            await context.SaveChangesAsync();
+            return NoContent();
          }
 
+         [HttpDelete("{id:int}")]
+         public async Task<ActionResult> Delete(int id)
+         {
+            var exists = await context.Patients.AnyAsync(x => x.PatientId == id);
+
+            if(!exists)
+            {
+               return NotFound();
+            }
+
+            context.Remove(new Patient(){PatientId=id});
+            await context.SaveChangesAsync();
+            return NoContent();
+         }
     }
 }

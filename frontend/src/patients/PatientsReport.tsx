@@ -48,32 +48,32 @@ export default function PatientsReport()
 
             <table className="table table-striped">
                 <thead>
-
                     <tr>
-
-                    <th></th>
                     <th>Patient Id</th>
                     <th>Patient Name</th>
                     <th>Patient Email</th>
+                    <th>Patient PhoneNumber</th>
                     <th>Patient Gender </th>
                     <th>Patient Location</th>
-
                     </tr>
-                    
                 </thead>
                 <tbody>
                     {patients?.map(patient=>
                     <tr key={patient.patientId}>
+                        
                         <td>
                             {patient.patientId}
                         </td>
                         <td>
-                            {patient.name}
+                            {patient.patientName}
                         </td>
                         <td>
                             {patient.email}
                         </td>
 
+                        <td>
+                            {patient.phoneNumber}
+                        </td>
                         <td>
                             {patient.gender}
                         </td>

@@ -29,7 +29,7 @@ export default function CreatePatient()
     return(
         <>
         <h3>Register Patient For Consultation</h3>
-        <PatientForm model={{name:'',email:'',phonenumber:'',gender:'',location:''}}
+        <PatientForm model={{patientName:'',email:'',phoneNumber:'',gender:'',location:''}}
         onSubmit={async value => {
            await create(value);
         }}

@@ -7,14 +7,14 @@ export default function FilterPatients()
 
     const initialValues:filterPatientsForm = 
     {
-        name:'',
+        patientname:'',
         patientId:0
     }
 
-    const patients:patientDTO[] = [{patientId:1,name:'Samuel Ndambuki',email:'sam.ndambuki@outlook.com'
-    ,phonenumber:'0797334258',gender:'Male',location:'Nyeri'},
-    {patientId:2,name:'Jesse Jowi',email:'jesse@gmail.com'
-    ,phonenumber:'0113931336',gender:'Male',location:'Nairobi'}
+    const patients:patientDTO[] = [{patientId:1,patientName:'Samuel Ndambuki',email:'sam.ndambuki@outlook.com'
+    ,phoneNumber:'0797334258',gender:'Male',location:'Nyeri'},
+    {patientId:2,patientName:'Jesse Jowi',email:'jesse@gmail.com'
+    ,phoneNumber:'0113931336',gender:'Male',location:'Nairobi'}
 ]
 
 
@@ -40,7 +40,7 @@ export default function FilterPatients()
                             <option value="0">--Choose a Patient Name--</option>
                             {patients.map(patient=><option key={patient.patientId}
                             value={patient.patientId}
-                            >{patient.name}</option>)}
+                            >{patient.patientName}</option>)}
                             </select>
                         </div>
                         <div className="col-auto">
@@ -76,6 +76,6 @@ export default function FilterPatients()
 
 interface filterPatientsForm
 {
-    name:string;
+    patientname:string;
     patientId:number;
 }
