@@ -10,6 +10,12 @@ namespace FourthProj.Helpers
         {
             CreateMap<PatientDTO,Patient>().ReverseMap();
             CreateMap<PatientCreationDTO,Patient>();
+
+            CreateMap<DoctorDTO,Doctor>().ReverseMap();
+            CreateMap<DoctorCreationDTO,Doctor>();
+
+             CreateMap<SpecialtyDTO,Specialty>().ReverseMap();
+            CreateMap<SpecialtyCreationDTO,Specialty>();
         }
 
     }

@@ -1,16 +1,18 @@
 export interface doctorCreationDTO
 {
-    name:string;
+    doctorName:string;
     email:string;
     phonenumber:string;
     gender:string;
+    specialtyName:string;
 }
 
 export interface doctorDTO
 {
     doctorId:number;
-    name:string;
+    doctorName:string;
     email:string;
     phonenumber:string;
     gender:string;
+    specialtyName:string;
 }

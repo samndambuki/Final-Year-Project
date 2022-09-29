@@ -14,6 +14,8 @@ import EditSpecialty from "./specialties/EditSpecialty";
 import IndexSpecialties from "./specialties/IndexSpecialties";
 import RedirectToLandingPage from "./utils/RedirectToLandingPage";
 import PatientsReport from "./patients/PatientsReport";
+import IndexAdmin from "./admin/IndexAdmin";
+import SpecialtiesReport from "./specialties/SpecialtiesReport";
 
 const routes = 
 [
@@ -34,6 +36,9 @@ const routes =
     {path:'/specialties', component:IndexSpecialties, exact:true},
     {path:'/specialties/create', component:CreateSpecialty},
     {path:'/specialties/edit/:id(\\d+)', component:EditSpecialty},
+    {path:'/specialties/report',component:SpecialtiesReport},
+
+    {path:'/admin', component:IndexAdmin, exact:true},
 
     {path:'/', component:LandingPage, exact:true},
     {path:'*',component:RedirectToLandingPage}

@@ -3,6 +3,7 @@ using FourthProj;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220929081624_DoctorMigration")]
+    partial class DoctorMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,10 +44,6 @@ namespace backend.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SpecialtyName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -85,23 +83,6 @@ namespace backend.Migrations
                     b.HasKey("PatientId");
 
                     b.ToTable("Patients");
-                });
-
-            modelBuilder.Entity("FourthProj.Entities.Specialty", b =>
-                {
-                    b.Property<int>("SpecialtyId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SpecialtyId"), 1L, 1);
-
-                    b.Property<string>("SpecialtyName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SpecialtyId");
-
-                    b.ToTable("Specialties");
                 });
 #pragma warning restore 612, 618
         }

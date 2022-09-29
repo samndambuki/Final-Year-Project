@@ -1,17 +1,35 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useHistory } from "react-router-dom";
 import DoctorForm from "./DoctorForm";
+import { doctorCreationDTO } from "./doctors.models";
 
 export default function CreateDoctor()
 {
+
+    const history = useHistory();
+
+    async function create(doctor:doctorCreationDTO)
+    {
+        try
+        {
+            await axios.post('https://localhost:7234/api/doctors',doctor)
+            history.push('/doctors');
+        }
+        catch(error)
+        {
+            console.error(error);
+        }
+
+    }
+
+
     return(
         <>
         <h3>Register Doctor To Offer Consultation</h3>
-        <DoctorForm model={{name:'',email:'',phonenumber:'',gender:''}}
-        onSubmit={async value => {
-            //when the form is posted
-            await new Promise(r => setTimeout(r,3000));
-            console.log(value);
-        }}
+        <DoctorForm model={{doctorName:'',specialtyName:'',email:'',phonenumber:'',gender:''}}
+         onSubmit={async value => {
+            await create(value);
+         }}
         />
         </>
     )

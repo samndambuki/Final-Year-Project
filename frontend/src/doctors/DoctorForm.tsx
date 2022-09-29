@@ -17,18 +17,22 @@ export default function DoctorForm(props:doctorFormProps)
             props.onSubmit
         }
         validationSchema={Yup.object({
-            name:Yup.string().required('Please Enter the Doctors Name'),
+            doctorName:Yup.string().required('Please Enter the Doctors Name'),
             email:Yup.string().required('Please Enter the Doctors Email'),
             phonenumber:Yup.string().required('Please Enter the Doctors Phone Number'),
             gender:Yup.string().required('Please Enter the Doctors Gender'),
+            specialtyName:Yup.string().required('Please Enter Your Specialty'),
+            
+            
         })}
         >
             {(formikProps)=>(
                  <Form>
-                 <TextField field="name" displayName="Name"/>
+                 <TextField field="doctorName" displayName="Name"/>
                  <TextField field="email" displayName="Email"/>
                  <TextField field="phonenumber" displayName="Phone Number"/>
                  <TextField field="gender" displayName="Gender"/>
+                 <TextField field="specialtyName" displayName="SpecialtyName"/>
 
                 
                  <Button disabled={formikProps.isSubmitting} type='submit'>Save Changes</Button>

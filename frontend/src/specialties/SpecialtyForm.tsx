@@ -18,18 +18,15 @@ export default function SpeciatyForm(props:specialtyFormProps)
         }
         validationSchema={Yup.object({
             specialtyname:Yup.string().required('Please Enter the Specialty Name'),
-            doctorname:Yup.string().required('Please Enter the Doctors Name'),
          
         })}
         >
             {(formikProps)=>(
                  <Form>
                  <TextField field="specialtyname" displayName="Specialty Name"/>
-                 <TextField field="doctorname" displayName="Doctor Name"/>
-                 
-                
+
                  <Button disabled={formikProps.isSubmitting} type='submit'>Save Changes</Button>
-                 <Link className="btn btn-secondary" to="/doctors">Cancel</Link>
+                 <Link className="btn btn-secondary" to="/admin">Cancel</Link>
              </Form>
             )}
         </Formik>

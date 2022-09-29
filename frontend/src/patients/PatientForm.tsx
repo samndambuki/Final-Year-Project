@@ -19,7 +19,7 @@ export default function PatientForm(props:patientFormProps)
         validationSchema={Yup.object({
             patientName:Yup.string().required('Please Enter Your Name'),
             email:Yup.string().required('Please Enter Your Email'),
-            phonenumber:Yup.string().required('Please Enter Your Phone Number'),
+            phoneNumber:Yup.string().required('Please Enter Your Phone Number'),
             gender:Yup.string().required('Please Enter Your Gender'),
             location:Yup.string().required('Please enter Your Location')
         })}

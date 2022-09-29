@@ -1,12 +1,11 @@
 export interface specialtyCreationDTO
 {
-    specialtyname:string;
-    doctorname:string;
+    specialtyName:string;
 }
 
 export interface specialtyDTO
 {
     specialtyId:number;
-    specialtyname:string;
-    doctorname:string;
+    specialtyName:string;
+
 }
