@@ -1,5 +1,9 @@
+using System.Text;
 using FourthProj;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ProjAPI;
     public class Startup
@@ -21,6 +25,28 @@ namespace ProjAPI;
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+
+        services.AddIdentity<IdentityUser,IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
+
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
+            options => 
+            {
+                options.TokenValidationParameters = new TokenValidationParameters 
+                {
+                    ValidateIssuer=false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(Configuration["keyjwt"])
+                    ),
+                    ClockSkew = TimeSpan.Zero
+                };
+            }
+        );
+
         services.AddCors(options=>{
             var frontendURL = Configuration.GetValue<string>("frontend_url");
             options.AddDefaultPolicy(builder=>{

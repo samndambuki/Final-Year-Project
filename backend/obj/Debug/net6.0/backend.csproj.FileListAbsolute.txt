@@ -61,3 +61,8 @@
 /home/sam/projects/final year project/backend/bin/Debug/net6.0/runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll
 /home/sam/projects/final year project/backend/bin/Debug/net6.0/AutoMapper.dll
 /home/sam/projects/final year project/backend/bin/Debug/net6.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/home/sam/projects/final year project/backend/bin/Debug/net6.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/home/sam/projects/final year project/backend/bin/Debug/net6.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/home/sam/projects/final year project/backend/bin/Debug/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/home/sam/projects/final year project/backend/bin/Debug/net6.0/Microsoft.Extensions.Identity.Core.dll
+/home/sam/projects/final year project/backend/bin/Debug/net6.0/Microsoft.Extensions.Identity.Stores.dll
