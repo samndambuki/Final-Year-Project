@@ -20,6 +20,7 @@ export default function IndexPatients()
         <ul>
             <li>
             <Link className="btn btn-primary w-100" to="/patients/create">Register Patient For Consultation</Link>
+            <li><Link className="btn btn-primary w-100 mt-4"  to="/appointments/create">Schedule Appointment</Link></li>
             </li>
         </ul>
         

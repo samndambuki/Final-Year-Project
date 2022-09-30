@@ -16,6 +16,9 @@ import RedirectToLandingPage from "./utils/RedirectToLandingPage";
 import PatientsReport from "./patients/PatientsReport";
 import IndexAdmin from "./admin/IndexAdmin";
 import SpecialtiesReport from "./specialties/SpecialtiesReport";
+import SchedulesReport from "./schedules/SchedulesReport";
+import AppointmentsReport from "./appointments/AppointmentsReport";
+import CreateAppointment from "./appointments/CreateAppointment";
 
 const routes = 
 [
@@ -24,6 +27,9 @@ const routes =
     {path:'/patients/edit/:id(\\d+)', component:EditPatient},
     {path:'/patients/filter', component:FilterPatients},
     {path:'/patients/report',component:PatientsReport},
+    {path:'/appointments/create', component:CreateAppointment},
+    {path:'/appointments/report',component:AppointmentsReport},
+
 
     {path:'/doctors', component:IndexDoctors, exact:true},
     {path:'/doctors/create', component:CreateDoctor},
@@ -32,6 +38,8 @@ const routes =
     {path:'/schedules', component:IndexSchedules, exact:true},
     {path:'/schedules/create', component:CreateSchedule},
     {path:'/schedules/edit/:id(\\d+)', component:EditSchedule},
+    {path:'/schedules/report',component:SchedulesReport},
+
 
     {path:'/specialties', component:IndexSpecialties, exact:true},
     {path:'/specialties/create', component:CreateSpecialty},

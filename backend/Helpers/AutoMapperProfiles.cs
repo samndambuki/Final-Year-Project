@@ -20,6 +20,9 @@ namespace FourthProj.Helpers
             CreateMap<ScheduleDTO,Schedule>().ReverseMap();
             CreateMap<ScheduleCreationDTO,Schedule>();
 
+            CreateMap<AppointmentDTO,Appointment>().ReverseMap();
+            CreateMap<AppointmentCreationDTO,Appointment>();
+
         }
 
     }

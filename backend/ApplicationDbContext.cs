@@ -14,6 +14,7 @@ namespace FourthProj
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Specialty> Specialties { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
+         public DbSet<Appointment> Appointments { get; set; }
 
     }
 }
