@@ -22,7 +22,7 @@ import CreateAppointment from "./appointments/CreateAppointment";
 
 const routes = 
 [
-    {path:'/patients', component:IndexPatients, exact:true},
+    {path:'/patients', component:IndexPatients, exact:true,},
     {path:'/patients/create', component:CreatePatient},
     {path:'/patients/edit/:id(\\d+)', component:EditPatient},
     {path:'/patients/filter', component:FilterPatients},
@@ -46,7 +46,7 @@ const routes =
     {path:'/specialties/edit/:id(\\d+)', component:EditSpecialty},
     {path:'/specialties/report',component:SpecialtiesReport},
 
-    {path:'/admin', component:IndexAdmin, exact:true},
+    {path:'/admin', component:IndexAdmin, exact:true,isAdmin:true},
 
     {path:'/', component:LandingPage, exact:true},
     {path:'*',component:RedirectToLandingPage}

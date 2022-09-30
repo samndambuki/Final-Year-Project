@@ -1,4 +1,5 @@
 import {NavLink} from "react-router-dom";
+import Authorized from "./auth/Authorized";
 
 export default function Menu()
 {
@@ -8,7 +9,12 @@ export default function Menu()
                 <NavLink className="navbar-brand" to="/">Outspan Hospital Online Consultation System</NavLink>
                 <div className="collapse navbar-collapse">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
+
+                    <Authorized
+                    role="admin"
+                            authorized={
+                            <>
+                            <li className="nav-item">
                             <NavLink className="nav-link" to="/patients">
                                 Patients
                             </NavLink>
@@ -18,23 +24,25 @@ export default function Menu()
                                 Doctors
                             </NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/specialties">
-                                Specialties
-                            </NavLink>
-                        </li>
+                      
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/schedules">
                                 Schedules
                             </NavLink>
                         </li>
-
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/admin">
                                 Admin
                             </NavLink>
                         </li>
+                            </>}
+                            />
 
+                            <li className="nav-item">
+                            <NavLink className="nav-link" to="/specialties">
+                                Specialties
+                            </NavLink>
+                        </li>
                     </ul>
                 </div>
             </div>
