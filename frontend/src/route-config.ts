@@ -19,6 +19,7 @@ import SpecialtiesReport from "./specialties/SpecialtiesReport";
 import SchedulesReport from "./schedules/SchedulesReport";
 import AppointmentsReport from "./appointments/AppointmentsReport";
 import CreateAppointment from "./appointments/CreateAppointment";
+import Register from "./auth/Register";
 
 const routes = 
 [
@@ -45,6 +46,8 @@ const routes =
     {path:'/specialties/create', component:CreateSpecialty},
     {path:'/specialties/edit/:id(\\d+)', component:EditSpecialty},
     {path:'/specialties/report',component:SpecialtiesReport},
+
+    {path:'/register', component:Register, exact:true},
 
     {path:'/admin', component:IndexAdmin, exact:true,isAdmin:true},
 

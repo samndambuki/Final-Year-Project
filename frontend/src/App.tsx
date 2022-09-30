@@ -17,6 +17,8 @@ function App() {
     return claims.findIndex(claim => claim.name === 'role' && claim.value === 'admin') > -1;
   }
 
+  
+
   return (
    
    <BrowserRouter>
