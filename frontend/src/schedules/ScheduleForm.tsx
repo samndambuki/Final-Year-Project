@@ -14,14 +14,14 @@ export default function ScheduleForm(props:scheduleFormProps)
         onSubmit={props.onSubmit}
         validationSchema={
             Yup.object({
-                name:Yup.string().required('This field is required'),
+                doctorName:Yup.string().required('This field is required'),
                 availability:Yup.date().nullable().required('This field is required')
             })
         }
         >
             {(formikProps)=>(
                 <Form>
-                    <TextField displayName="Name" field="name"/>
+                    <TextField displayName="Doctor Name" field="doctorName"/>
                     <DateField displayName="Schedule Appointment" field="availability"/>
                     <Button disabled={formikProps.isSubmitting}
                     type="submit">Save Changes</Button>

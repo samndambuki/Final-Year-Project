@@ -1,5 +1,15 @@
+
 export interface scheduleCreationDTO
 {
-    name:string;
+    
+    doctorName:string;
     availability?:Date;
+}
+
+export interface scheduleDTO
+{
+    scheduleId:number;
+    doctorName:string;
+    availability?:Date;
+   
 }

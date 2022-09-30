@@ -14,8 +14,12 @@ namespace FourthProj.Helpers
             CreateMap<DoctorDTO,Doctor>().ReverseMap();
             CreateMap<DoctorCreationDTO,Doctor>();
 
-             CreateMap<SpecialtyDTO,Specialty>().ReverseMap();
+            CreateMap<SpecialtyDTO,Specialty>().ReverseMap();
             CreateMap<SpecialtyCreationDTO,Specialty>();
+
+            CreateMap<ScheduleDTO,Schedule>().ReverseMap();
+            CreateMap<ScheduleCreationDTO,Schedule>();
+
         }
 
     }
