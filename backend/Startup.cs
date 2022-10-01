@@ -24,6 +24,11 @@ namespace ProjAPI;
             services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
+
+        services.AddAuthorization(options => {
+            options.AddPolicy("IsAdmin",policy => policy.RequireClaim("role","admin"));
+        });
+
         services.AddSwaggerGen();
 
         services.AddIdentity<IdentityUser,IdentityRole>()
@@ -47,14 +52,23 @@ namespace ProjAPI;
             }
         );
 
-        services.AddCors(options=>{
-            var frontendURL = Configuration.GetValue<string>("frontend_url");
-            options.AddDefaultPolicy(builder=>{
-                builder.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader()
-                .WithExposedHeaders(new string[] {"totalAmountOfRecords"});
-                
-            });
+
+         services.AddCors();
+
+
+            services.AddCors(options =>
+{
+    options.AddPolicy(name: "AllowOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:3000", "http://192.168.43.44:3000")
+                                .AllowAnyHeader()
+                                .WithExposedHeaders(new string[] {"totalAmountOfRecords"})
+                                   .AllowAnyMethod();
+                                
         });
+});
+
 
         }
 

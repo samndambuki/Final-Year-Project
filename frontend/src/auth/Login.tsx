@@ -7,20 +7,18 @@ import AuthenticationContext from "./AuthenticationContext";
 import AuthForm from "./AuthForm";
 import { getClaims, saveToken } from "./handleJWT";
 
-export default function Register()
+export default function Login()
 {
-
     const[errors,setErrors] = useState<string[]>([]);
     const {update} = useContext(AuthenticationContext);
     const history = useHistory();
 
-    async function register(credentials:userCredentials)
+    async function login(credentials:userCredentials)
     {
         try
         {
             setErrors([]);
-            const response = await axios
-            .post<authenticationResponse>(`https://localhost:7234/api/accounts/create`,credentials);
+            const response = await axios.post<authenticationResponse>(`https://localhost:7234/api/accounts/login`,credentials);
             saveToken(response.data);
             update(getClaims());
             history.push('/');
@@ -33,11 +31,10 @@ export default function Register()
     }
     return(
         <>
-        <h3>Register</h3>
+        <h3>Login</h3>
         <DisplayErrors errors={errors}/>
-        <AuthForm
-        model={{email:'',password:''}}
-        onSubmit={async values => await register(values) }
+        <AuthForm model={{email:'',password:''}}
+        onSubmit={async values => await login(values)}
         />
         </>
     )

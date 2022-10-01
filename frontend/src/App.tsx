@@ -2,15 +2,17 @@ import './App.css';
 import Menu from './Menu';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import routes from './route-config';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { claim } from './auth/auth.models';
 import AuthenticationContext from './auth/AuthenticationContext';
+import { getClaims } from './auth/handleJWT';
 
 function App() {
 
-  const [claims,setClaims] = useState<claim[]>([
-    {name:'email',value:'sam@gmail.com'}
-  ]);
+  const [claims,setClaims] = useState<claim[]>([]);
+
+
+  useEffect(()=>{setClaims(getClaims())},[])
 
   function isAdmin()
   {

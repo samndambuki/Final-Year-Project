@@ -2,6 +2,8 @@ using AutoMapper;
 using FourthProj.DTOs;
 using FourthProj.Entities;
 using FourthProj.Helpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +11,7 @@ namespace FourthProj.Controllers
 {
     [Route("api/specialties")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy="IsAdmin")]
     
     public class SpecialtiesController:ControllerBase
     {
@@ -25,6 +28,7 @@ namespace FourthProj.Controllers
          }
 
          [HttpGet]
+         [AllowAnonymous]
          public async Task<ActionResult<List<SpecialtyDTO>>> Get([FromQuery] PaginationDTO paginationDTO)
          {
             
@@ -39,6 +43,7 @@ namespace FourthProj.Controllers
          }
 
          [HttpGet("{Id:int}",Name="getSpecialty")]
+         [AllowAnonymous]
          public async Task <ActionResult<SpecialtyDTO>> Get(int Id)
          {
             var specialty = await context.Specialties.FirstOrDefaultAsync(x=>x.SpecialtyId == Id);
@@ -60,6 +65,7 @@ namespace FourthProj.Controllers
          }
 
          [HttpPut("{id:int}")]
+         
          public async Task<ActionResult> Put(int id,[FromBody] SpecialtyCreationDTO specialtyCreationDTO)
          {
             var specialty = await context.Specialties.FirstOrDefaultAsync(x=>x.SpecialtyId == id );

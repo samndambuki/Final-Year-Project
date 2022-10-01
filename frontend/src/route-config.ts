@@ -20,6 +20,7 @@ import SchedulesReport from "./schedules/SchedulesReport";
 import AppointmentsReport from "./appointments/AppointmentsReport";
 import CreateAppointment from "./appointments/CreateAppointment";
 import Register from "./auth/Register";
+import Login from "./auth/Login";
 
 const routes = 
 [
@@ -48,6 +49,7 @@ const routes =
     {path:'/specialties/report',component:SpecialtiesReport},
 
     {path:'/register', component:Register, exact:true},
+    {path:'/login', component:Login, exact:true},
 
     {path:'/admin', component:IndexAdmin, exact:true,isAdmin:true},
 

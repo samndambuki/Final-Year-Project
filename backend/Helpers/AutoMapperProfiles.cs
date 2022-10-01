@@ -1,6 +1,8 @@
 using AutoMapper;
+using FourthProj.DTos;
 using FourthProj.DTOs;
 using FourthProj.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace FourthProj.Helpers
 {
@@ -22,6 +24,8 @@ namespace FourthProj.Helpers
 
             CreateMap<AppointmentDTO,Appointment>().ReverseMap();
             CreateMap<AppointmentCreationDTO,Appointment>();
+
+            CreateMap<IdentityUser,UserDTO>();
 
         }
 
