@@ -4,20 +4,51 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 namespace ProjAPI;
     public class Startup
     {
+        public string ConnectionString { get; set; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            ConnectionString = Configuration.GetConnectionString("DefaultConnection");
         }
         public IConfiguration Configuration{get;}
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                     //configure DBContext with SQL 
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(ConnectionString));
+
+            var tokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"])),
+                    ValidateIssuer = true,
+                    ValidIssuer = Configuration["JWT:Issuer"],
+
+                    ValidateAudience = true,
+                    ValidAudience = Configuration["JWT:Audience"],
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
+                    };
+
+            services.AddSingleton(tokenValidationParameters);
+
+            services.AddCors();
+
+            services.AddCors(options =>
+{
+    options.AddPolicy(name: "AllowOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:3000", "http://192.168.43.44:3000")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+        });
+});
             
             services.AddAutoMapper(typeof(Startup));
 
@@ -35,63 +66,57 @@ namespace ProjAPI;
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
 
-        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
-            options => 
+          //Add Authentication
+            services.AddAuthentication(options=>
             {
-                options.TokenValidationParameters = new TokenValidationParameters 
-                {
-                    ValidateIssuer=false,
-                    ValidateAudience = false,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(Configuration["keyjwt"])
-                    ),
-                    ClockSkew = TimeSpan.Zero
-                };
-            }
-        );
-
-
-         services.AddCors();
-
-
-            services.AddCors(options =>
-{
-    options.AddPolicy(name: "AllowOrigin",
-        builder =>
-        {
-            builder.WithOrigins("http://localhost:3000", "http://192.168.43.44:3000")
-                                .AllowAnyHeader()
-                                .WithExposedHeaders(new string[] {"totalAmountOfRecords"})
-                                   .AllowAnyMethod();
-                                
-        });
-});
-
-
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).
+                AddJwtBearer(options => {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = tokenValidationParameters;
+            });
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Outspan Hospital Online Consulatation Site.API", Version = "v1" });
+            });
         }
-
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Outsapn Hospital Online Consulation Site v1"));
+            }
+
+            // Shows UseCors with CorsPolicyBuilder.
+app.UseCors(builder =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-app.UseRouting();
-
-app.UseCors();
-
-app.UseAuthorization();
-
-app.UseEndpoints(endpoints=>
-{
-    endpoints.MapControllers();
+    builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
 });
+
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            //Authentication & Authorization
+            app.UseAuthentication();
+            
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+           
         }
 
     }

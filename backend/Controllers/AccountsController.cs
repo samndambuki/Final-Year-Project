@@ -68,19 +68,24 @@ namespace FourthProj.Controllers
             return NoContent();
           }
 
-        [HttpPost("create")]
-        public async Task<ActionResult<AuthenticationResponse>> Create([FromBody] UserCredentials userCredentials)
+           [HttpPost("create")]
+        public async Task<ActionResult<AuthenticationResponse>> Create(
+            [FromBody]UserCredentials userCredentials)
         {
-            var user = new IdentityUser {UserName = userCredentials.Email,Email = userCredentials.Email};
-            var result =  await userManager.CreateAsync(user,userCredentials.Password);
+
+            var user = new IdentityUser {
+                UserName = userCredentials.Email,
+                Email = userCredentials.Email
+            };
+
+            var result = await userManager.CreateAsync(user,userCredentials.Password);
 
             if(result.Succeeded)
             {
                 return BuildToken(userCredentials);
 
             }
-            else
-            {
+            else{
                 return BadRequest(result.Errors);
             }
         } 
@@ -88,29 +93,27 @@ namespace FourthProj.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<AuthenticationResponse>> Login(
             [FromBody] UserCredentials userCredentials)
+        {
+            var result = await signInManager.PasswordSignInAsync(userCredentials.Email,
+            userCredentials.Password,isPersistent:false,lockoutOnFailure:false);
+
+            if(result.Succeeded)
             {
-                var result = await signInManager.PasswordSignInAsync(userCredentials.Email,
-                userCredentials.Password,isPersistent:false,lockoutOnFailure:false
-                );
-
-                if(result.Succeeded)
-                {
-                    return BuildToken(userCredentials);
-                }
-                else
-                {
-                    return BadRequest("Incorrect Login");
-                }
+                return BuildToken(userCredentials);
             }
-
-        private AuthenticationResponse BuildToken(UserCredentials userCredentials)
+            else
+            {
+                return BadRequest("Incorrect Login");
+            }
+        }
+       private AuthenticationResponse BuildToken(UserCredentials userCredentials)
         {
             var claims = new List<Claim>()
             {
-                new Claim("email",userCredentials.Email)
+                new Claim("email",userCredentials.Email)   
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["kejwt"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]));
             var creds = new SigningCredentials(key,SecurityAlgorithms.HmacSha256);
 
             var expiration = DateTime.UtcNow.AddYears(1);
@@ -118,12 +121,11 @@ namespace FourthProj.Controllers
             var token = new JwtSecurityToken(issuer:null,audience:null,claims:claims,
             expires:expiration,signingCredentials:creds);
 
-            return new AuthenticationResponse
+            return new AuthenticationResponse()
             {
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
                 Expiration = expiration
             };
-
         }
 
     }
