@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dFgOxea/SEe8fZ4ibqT061Pfl4PXXiPvr6GCuia0s5OkEwwxEe1gL+7BF53bvshmBQZZSvwKKcJr3pyzZu+g5A==",
+  "dgSpecHash": "8pnEwPfl/9mZjB0hKMuEeNlNYqLkB877p81GCUze3eBsEG/6gpo0DPTtvweyCw2Ehkxonz7EiG6q5TE8RCFkFA==",
   "success": true,
-  "projectFilePath": "/home/sam/projects/final year project/backend/backend.csproj",
+  "projectFilePath": "/home/sam/projects/Final-Year-Project/backend/backend.csproj",
   "expectedPackageFiles": [
     "/home/sam/.nuget/packages/automapper/11.0.0/automapper.11.0.0.nupkg.sha512",
     "/home/sam/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/11.0.0/automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

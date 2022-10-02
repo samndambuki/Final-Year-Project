@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/sam/projects/final year project/backend/backend.csproj": {}
+    "/home/sam/projects/Final-Year-Project/backend/backend.csproj": {}
   },
   "projects": {
-    "/home/sam/projects/final year project/backend/backend.csproj": {
+    "/home/sam/projects/Final-Year-Project/backend/backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/sam/projects/final year project/backend/backend.csproj",
+        "projectUniqueName": "/home/sam/projects/Final-Year-Project/backend/backend.csproj",
         "projectName": "backend",
-        "projectPath": "/home/sam/projects/final year project/backend/backend.csproj",
+        "projectPath": "/home/sam/projects/Final-Year-Project/backend/backend.csproj",
         "packagesPath": "/home/sam/.nuget/packages/",
-        "outputPath": "/home/sam/projects/final year project/backend/obj/",
+        "outputPath": "/home/sam/projects/Final-Year-Project/backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/sam/.nuget/NuGet/NuGet.Config"

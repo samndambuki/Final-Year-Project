@@ -1,39 +1,93 @@
-import { userCredentials } from "./auth.models";
-import {Form,Formik,FormikHelpers} from 'formik';
-import * as Yup from 'yup'; 
-import TextField from '../forms/TextField';
-import Button from "../utils/Button";
-import { Link } from "react-router-dom";
+import React, { useContext, useRef } from "react";
+import { Button,Col,Row,Container, Form, Navbar } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { auth } from "../firebaseSetup";
 
-export default function AuthForm(props:authFormProps){
-    return(
-        <Formik
-        initialValues={props.model}
-        onSubmit={props.onSubmit}
-        validationSchema={Yup.object({
-            email: Yup.string().required("This field is required")
-            .email("You have to insert a valid email"),
-            password:Yup.string().required("This field is required")
-        })
-        }
-        >
-            {formikProps => (
-                <Form>
-                    <TextField displayName="Email" field="email"/>
-                    <TextField displayName="Password" field="password" type="password"/>
+function AuthForm() {
+  const user = useContext(AuthContext);
 
-                    <Button disabled={formikProps.isSubmitting} type="submit">Send</Button>
-                    <Link className="btn btn-secondary" to="/">Cancel</Link>
-                </Form>
-            )}
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
-        </Formik>
+  const history = useHistory();
 
-    )
+  const createAccount = async () => {
+    try {
+      await auth.createUserWithEmailAndPassword(
+        emailRef.current!.value,
+        passwordRef.current!.value
+      );
+    } 
+    
+    catch (error) {
+      console.error(error);
+    }
+  };
+
+  const signIn = async () => {
+    try {
+      await auth.signInWithEmailAndPassword(
+        emailRef.current!.value,
+        passwordRef.current!.value
+      );
+      history.push('/landing');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const signOut = async () => {
+    await auth.signOut();
+  };
+
+  return (
+    <>
+      <Navbar className="justify-content-between" bg="dark" variant="dark">
+        <Navbar.Brand>Outspan Hospital Consulatation System</Navbar.Brand>
+        {user && <Button onClick={signOut}>Sign Out</Button>}
+      </Navbar>
+      {!user ? (
+        <Container style={{ maxWidth: "500px" }} fluid>
+          <Form className="mt-4">
+            <Form.Group controlId="formEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control ref={emailRef} type="email" placeholder="email" />
+            </Form.Group>
+            <Form.Group controlId="formPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                ref={passwordRef}
+                type="password"
+                placeholder="password"
+              />
+            </Form.Group>
+            <Form.Group>
+                <Row>
+              <Col xs={6}>
+                <Button onClick={createAccount} type="button" className="block">
+                  Sign Up
+                </Button>
+              </Col>
+              <Col xs={6}>
+                <Button
+                  onClick={signIn}
+                  type="button"
+                  variant="secondary"
+                  className="block"
+                >
+                  Sign In
+                </Button>
+              </Col>
+              </Row>
+            </Form.Group>
+          </Form>
+        </Container>
+      ) : (
+        <h2 className="mt-4 text-center">Welcome {user.email}</h2>
+      )}
+    </>
+  );
 }
 
-interface authFormProps{
-    model:userCredentials;
-    onSubmit(values:userCredentials,actions:FormikHelpers<userCredentials>):void;
-
-}
+export default AuthForm;

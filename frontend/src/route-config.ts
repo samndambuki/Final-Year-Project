@@ -19,8 +19,9 @@ import SpecialtiesReport from "./specialties/SpecialtiesReport";
 import SchedulesReport from "./schedules/SchedulesReport";
 import AppointmentsReport from "./appointments/AppointmentsReport";
 import CreateAppointment from "./appointments/CreateAppointment";
-import Register from "./auth/Register";
-import Login from "./auth/Login";
+import AuthForm from "./auth/AuthForm";
+import Menu from "./Menu";
+
 
 const routes = 
 [
@@ -42,18 +43,17 @@ const routes =
     {path:'/schedules/edit/:id(\\d+)', component:EditSchedule},
     {path:'/schedules/report',component:SchedulesReport},
 
-
     {path:'/specialties', component:IndexSpecialties, exact:true},
     {path:'/specialties/create', component:CreateSpecialty},
     {path:'/specialties/edit/:id(\\d+)', component:EditSpecialty},
     {path:'/specialties/report',component:SpecialtiesReport},
 
-    {path:'/register', component:Register, exact:true},
-    {path:'/login', component:Login, exact:true},
+    {path:'/', component:AuthForm, exact:true},
+    {path:'/menu',component:Menu, exact:true},
 
     {path:'/admin', component:IndexAdmin, exact:true,isAdmin:true},
 
-    {path:'/', component:LandingPage, exact:true},
+    {path:'/landing', component:LandingPage, exact:true},
     {path:'*',component:RedirectToLandingPage}
 ];
 
