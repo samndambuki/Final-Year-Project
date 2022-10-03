@@ -78,7 +78,6 @@ export default function Pagination(props:paginationProps)
     return <nav>
 
         <ul className="pagination justify-content-center" >
-            {props.totalAmountOfPages}
             {linkModels.map(link => <li key={link.text}
             onClick={() => selectPage(link)}
             className={`page-item cursor ${getClass(link)}`}
