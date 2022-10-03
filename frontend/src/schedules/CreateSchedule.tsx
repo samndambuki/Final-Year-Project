@@ -23,7 +23,7 @@ export default function CreateSchedule()
     return(
         <>
         <h3>Register Doctors Schedule</h3>
-        <ScheduleForm model={{doctorName:'',availability:undefined}}
+        <ScheduleForm model={{doctorName:'',availabilityDate:undefined,availabilityTime:undefined}}
          onSubmit={async value => {
             await create(value);
          }}

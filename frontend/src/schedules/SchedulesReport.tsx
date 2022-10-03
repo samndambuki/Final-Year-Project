@@ -51,7 +51,8 @@ export default function SchedulesReport()
                     <tr>
                     <th>Schedule Id</th>
                     <th>Docotor Name</th>
-                    <th>Availability</th>
+                    <th>Availability Date</th>
+                    <th>Availability Time</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,7 +66,10 @@ export default function SchedulesReport()
                             {schedule.doctorName}
                         </td>
                         <td>
-                            {schedule.availability?.toString()}
+                            {schedule.availabilityDate?.toString()}
+                        </td>
+                        <td>
+                            {schedule.availabilityTime?.toString()}
                         </td>
                     </tr>
                     )}

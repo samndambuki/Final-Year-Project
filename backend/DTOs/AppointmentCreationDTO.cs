@@ -4,6 +4,7 @@ namespace FourthProj.DTOs
     {
         public string PatientName { get; set; } = string.Empty;
         public string DoctorName { get; set; } = string.Empty;
-        public DateTime PatientAppointment {get;set;}
+        public string AppointmentDay {get;set;} = string.Empty;
+        public string AppointmentTime {get;set;} = string.Empty;
     }
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Button,Col,Row,Container, Form, Navbar } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
@@ -22,6 +22,7 @@ function AuthForm() {
     
     catch (error) {
       console.error(error);
+
     }
   };
 
@@ -37,24 +38,21 @@ function AuthForm() {
     }
   };
 
-  const signOut = async () => {
-    await auth.signOut();
-  };
-
   return (
     <>
       <Navbar className="justify-content-between" bg="dark" variant="dark">
-        <Navbar.Brand>Outspan Hospital Consulatation System</Navbar.Brand>
-        {user && <Button onClick={signOut}>Sign Out</Button>}
+        <Navbar.Brand>Outspan Hospital Online Consulatation System</Navbar.Brand>
       </Navbar>
       {!user ? (
         <Container style={{ maxWidth: "500px" }} fluid>
           <Form className="mt-4">
+
             <Form.Group controlId="formEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control ref={emailRef} type="email" placeholder="email" />
             </Form.Group>
-            <Form.Group controlId="formPassword">
+
+            <Form.Group controlId="formPassword" className="mt-2">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 ref={passwordRef}
@@ -62,25 +60,30 @@ function AuthForm() {
                 placeholder="password"
               />
             </Form.Group>
-            <Form.Group>
+
+            <Form.Group className="mt-2">
                 <Row>
+    
               <Col xs={6}>
-                <Button onClick={createAccount} type="button" className="block">
+                <Button onClick={createAccount} type="button" className="block" >
                   Sign Up
                 </Button>
               </Col>
+
               <Col xs={6}>
                 <Button
                   onClick={signIn}
                   type="button"
-                  variant="secondary"
+                  variant="warning"
                   className="block"
                 >
                   Sign In
                 </Button>
               </Col>
+
               </Row>
             </Form.Group>
+            
           </Form>
         </Container>
       ) : (

@@ -5,16 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FourthProj
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext([NotNullAttribute]DbContextOptions options) : base(options)
         {
 
-        }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
         }
         
         public DbSet<Patient> Patients { get; set; }

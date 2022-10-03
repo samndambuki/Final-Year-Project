@@ -19,7 +19,7 @@ export default function Menu()
         return(
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
-                    <NavLink className="navbar-brand" to="/">Outspan Hospital Online Consultation System</NavLink>
+                    <NavLink className="navbar-brand" to="/landing">Outspan Hospital Online Consultation System</NavLink>
                     <div className="collapse navbar-collapse"
                     style={{display:'flex',justifyContent:'space-between'}}
                     >
@@ -41,25 +41,28 @@ export default function Menu()
                                     Schedules
                                 </NavLink>
                             </li>
+
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/admin">
-                                    Admin
-                                </NavLink>
-                            </li>
-                                <li className="nav-item">
                                 <NavLink className="nav-link" to="/specialties">
                                     Specialties
                                 </NavLink>
                                 </li>
 
-                                 <li className="nav-item">
-                                <NavLink className="nav-link" to="/">
-                                {user && <Button onClick={signOut}>Sign Out</Button>}
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/admin">
+                                    Admin
                                 </NavLink>
-                                </li>
+                            </li>
+                            
                         </ul>
                         <div className="d-flex">
-                                   
+                                <NavLink className="nav-link" to="/">
+                                {user && <Button type="button"
+                  variant="danger"
+                  className="block" 
+                  onClick={signOut}
+                  >Sign Out</Button>}
+                                </NavLink>  
                          </div>
                     </div>
                 </div>

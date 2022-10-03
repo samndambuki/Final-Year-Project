@@ -7,7 +7,6 @@ import CreatePatient from "./patients/CreatePatient";
 import EditPatient from "./patients/EditPatient";
 import IndexPatients from "./patients/IndexPatients";
 import CreateSchedule from "./schedules/CreateSchedule";
-import EditSchedule from "./schedules/EditSchedule";
 import IndexSchedules from "./schedules/IndexSchedules";
 import CreateSpecialty from "./specialties/CreateSpecialty";
 import EditSpecialty from "./specialties/EditSpecialty";
@@ -40,7 +39,6 @@ const routes =
 
     {path:'/schedules', component:IndexSchedules, exact:true},
     {path:'/schedules/create', component:CreateSchedule},
-    {path:'/schedules/edit/:id(\\d+)', component:EditSchedule},
     {path:'/schedules/report',component:SchedulesReport},
 
     {path:'/specialties', component:IndexSpecialties, exact:true},

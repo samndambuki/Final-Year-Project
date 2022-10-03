@@ -19,36 +19,36 @@ namespace ProjAPI;
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews(); 
                      //configure DBContext with SQL 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(ConnectionString));
 
-            var tokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"])),
-                    ValidateIssuer = true,
-                    ValidIssuer = Configuration["JWT:Issuer"],
-
-                    ValidateAudience = true,
-                    ValidAudience = Configuration["JWT:Audience"],
-                    ValidateLifetime = true,
-                    ClockSkew = TimeSpan.Zero
-                    };
-
-            services.AddSingleton(tokenValidationParameters);
-
             services.AddCors();
 
-            services.AddCors(options =>
-{
-    options.AddPolicy(name: "AllowOrigin",
-        builder =>
+//             services.AddCors(options =>
+// {
+//     options.AddPolicy(name: "AllowOrigin",
+//         builder =>
+//         {
+//             builder.WithOrigins("http://localhost:3000", "http://192.168.43.44:3000")
+//                                 .AllowAnyHeader()
+//                                 .WithExposedHeaders(new string[] { "totalAmountOfRecords" })
+//                                 .AllowAnyMethod();
+//         });
+// });
+
+   services.AddCors(options =>
         {
-            builder.WithOrigins("http://localhost:3000", "http://192.168.43.44:3000")
-                                .AllowAnyHeader()
-                                .AllowAnyMethod();
+            var frontendURL = Configuration.GetValue<string>("frontend_url");
+            options.AddDefaultPolicy(builder =>
+            {
+                builder.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader()
+                .WithExposedHeaders(new string[] { "totalAmountOfRecords" });
+            });
+
         });
-});
+
+
             
             services.AddAutoMapper(typeof(Startup));
 
@@ -56,28 +56,8 @@ namespace ProjAPI;
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
 
-        services.AddAuthorization(options => {
-            options.AddPolicy("IsAdmin",policy => policy.RequireClaim("role","admin"));
-        });
-
         services.AddSwaggerGen();
 
-        services.AddIdentity<IdentityUser,IdentityRole>()
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
-
-          //Add Authentication
-            services.AddAuthentication(options=>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).
-                AddJwtBearer(options => {
-                options.SaveToken = true;
-                options.RequireHttpsMetadata = false;
-                options.TokenValidationParameters = tokenValidationParameters;
-            });
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -94,14 +74,15 @@ namespace ProjAPI;
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Outsapn Hospital Online Consulation Site v1"));
             }
 
-            // Shows UseCors with CorsPolicyBuilder.
-app.UseCors(builder =>
-{
-    builder
-    .AllowAnyOrigin()
-    .AllowAnyMethod()
-    .AllowAnyHeader();
-});
+//             // Shows UseCors with CorsPolicyBuilder.
+// app.UseCors(builder =>
+// {
+//     builder
+//     .AllowAnyOrigin()
+//     .AllowAnyMethod()
+//     .AllowAnyHeader();
+// });
+ app.UseCors(x=>x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); 
 
             app.UseHttpsRedirection();
 
