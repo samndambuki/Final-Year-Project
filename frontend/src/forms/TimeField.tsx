@@ -2,6 +2,7 @@ import { useFormikContext } from "formik";
 
 export default function TimeField(props:timeFieldProps)
 {
+    const showdate = new Date();
 
     const {values,validateForm,touched,errors} = useFormikContext<any>();
 
@@ -11,11 +12,15 @@ export default function TimeField(props:timeFieldProps)
             <input type="time" className="form-control"
             id={props.field}
             name={props.field}
-            defaultValue={values[props.field]?.toLocaleDateString('en-CA')}
+            //defaultValue={values[props.field]?.toLocaleTimeString('en-CA')}
             onChange={e=>
                 {
-                    const date = new Date(e.currentTarget.value + 'T00:00:00');
+                    const date = e.currentTarget.value;
+                    //const displaytime = date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
+
+                    //values[props.field] = displaytime;
                     values[props.field] = date;
+                    console.log(date);
                     validateForm();
                 }}
             />

@@ -11,11 +11,12 @@ export default function DateField(props:dateFieldProps)
             <input type="date" className="form-control"
             id={props.field}
             name={props.field}
-            defaultValue={values[props.field]?.toLocaleDateString('en-CA')}
+           // defaultValue={values[props.field]?.toLocaleDateString('en-CA')}
             onChange={e=>
                 {
-                    const date = new Date(e.currentTarget.value);
+                    const date = e.currentTarget.value;
                     values[props.field] = date;
+                    console.log(date);
                     validateForm();
                 }}
             />
