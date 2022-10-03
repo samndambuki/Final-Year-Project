@@ -23,7 +23,7 @@ namespace ProjAPI;
                      //configure DBContext with SQL 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(ConnectionString));
 
-            services.AddCors();
+            // services.AddCors();
 
 //             services.AddCors(options =>
 // {

@@ -15,3 +15,10 @@ code {
 form > a {
   margin-left: 1rem;
 }
+
+
+.errorDiv{
+  padding: 10;
+  border-radius: 10;
+  background-color: crimson;
+}

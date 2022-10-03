@@ -24,8 +24,10 @@ export default function SchedulesReport()
             params:{page,recordsPerPage}
         })
         .then((response:AxiosResponse<scheduleDTO[]>)=>{
+            console.log(response)
             const totalAmountOfRecords = 
             parseInt(response.headers['totalamountofrecords'],10);
+            console.log(totalAmountOfRecords)
             setTotalAmountOfPages(Math.ceil(totalAmountOfRecords/recordsPerPage));
             setSchedules(response.data);
         })

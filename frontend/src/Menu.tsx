@@ -14,7 +14,7 @@ export default function Menu()
     
     const location = useLocation();
     console.log(location);
-    if(location.pathname != "/"){
+    if(user){
 
         return(
             <nav className="navbar navbar-expand-lg navbar-light bg-light">

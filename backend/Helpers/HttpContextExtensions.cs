@@ -12,6 +12,7 @@ namespace FourthProj.Helpers
                 throw new ArgumentNullException(nameof(httpContext));
             } 
             double count = await queryable.CountAsync();
+            Console.WriteLine("Total Number of records is " + count);
             httpContext.Response.Headers.Add("totalAmountOfRecords",count.ToString());
         }
         
