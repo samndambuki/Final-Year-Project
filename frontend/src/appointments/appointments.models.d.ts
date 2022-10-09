@@ -3,7 +3,8 @@ export interface appointmentCreationDTO
 {
     patientName:string;
     doctorName:string;
-    patientAppointment?:Date;
+    appointmentDay?:string;
+    appointmentTime?:string;
 }
 
 export interface appointmentDTO
@@ -11,6 +12,6 @@ export interface appointmentDTO
     appointmentId:number;
     patientName:string;
     doctorName:string;
-    patientAppointment?:Date;
-   
+    appointmentDay?:string;
+    appointmentTime?:string;
 }

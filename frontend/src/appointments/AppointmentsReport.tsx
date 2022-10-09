@@ -52,7 +52,8 @@ export default function AppointmentsReport()
                     <th>Appointment Id</th>
                     <th>Patient Name</th>
                     <th>Doctor Name</th>
-                    <th>Appointment</th>
+                    <th>Appointment Date</th>
+                    <th>Appointment Time</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,7 +72,10 @@ export default function AppointmentsReport()
                             {appointment.doctorName}
                         </td>
                         <td>
-                            {appointment.patientAppointment?.toString()}
+                            {appointment.appointmentDay?.toString()}
+                        </td>
+                        <td>
+                            {appointment.appointmentTime?.toString()}
                         </td>
                     </tr>
                     )}

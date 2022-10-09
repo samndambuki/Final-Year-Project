@@ -23,7 +23,7 @@ export default function CreateAppointment()
     return(
         <>
         <h3> Patients Appointments</h3>
-        <AppointmentForm model={{patientName:'',doctorName:'',patientAppointment:undefined}}
+        <AppointmentForm model={{patientName:'',doctorName:'',appointmentDay:undefined,appointmentTime:undefined}}
         onSubmit={async value => {
             await create(value);
          }}

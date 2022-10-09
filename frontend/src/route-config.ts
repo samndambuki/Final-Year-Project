@@ -20,6 +20,7 @@ import AppointmentsReport from "./appointments/AppointmentsReport";
 import CreateAppointment from "./appointments/CreateAppointment";
 import AuthForm from "./auth/AuthForm";
 import Menu from "./Menu";
+import IndexChat from "./components/IndexChat";
 
 
 const routes = 
@@ -48,6 +49,8 @@ const routes =
 
     {path:'/', component:AuthForm, exact:true},
     {path:'/menu',component:Menu, exact:true},
+
+    {path:'/chat',component:IndexChat, exact:true},
 
     {path:'/admin', component:IndexAdmin, exact:true,isAdmin:true},
 

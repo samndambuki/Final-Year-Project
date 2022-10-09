@@ -115,7 +115,7 @@ function AuthForm() {
             </div>
             :
             <div>
-              <h3>Sign In</h3>
+              <h3>Log In</h3>
               {signInErrorMsg && <Alert variant="danger" onClose={() => setSignInErrorMsg("")} dismissible >{signInErrorMsg}</Alert>}
               <Form className="mt-4" onSubmit={signIn}>
 
@@ -144,7 +144,7 @@ function AuthForm() {
                         variant="warning"
                         className="block"
                       >
-                        Sign In
+                        Log In
                       </Button>
                     </Col>
 
