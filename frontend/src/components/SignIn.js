@@ -14,7 +14,7 @@ function SignIn(){
         <div style={{ display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
             <Button style={{ padding: '30px', fontSize: '20px', 
             borderRadius: '0', fontWeight: '600' }}
-            onClick={signInWithGoogle}>SignIn with Google</Button>
+            onClick={signInWithGoogle}>Sign In with Google</Button>
         </div>
     )
 }

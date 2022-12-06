@@ -46,7 +46,13 @@ export default function Menu()
                                 <NavLink className="nav-link" to="/specialties">
                                     Specialties
                                 </NavLink>
-                                </li>
+                            </li>
+{/* 
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/chat">
+                                    Consultation
+                                </NavLink>
+                            </li> */}
 
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/admin">
@@ -69,7 +75,6 @@ export default function Menu()
     
             </nav>
         )
-
     }
     else
     {
@@ -78,7 +83,4 @@ export default function Menu()
             </>
         )
     }
-    
-
-    
 }

@@ -5,6 +5,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import { AuthProvider } from './provider/AuthProvider';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Menu from './Menu';
+import "./index.css"
 
 ReactDOM.render(
   <React.StrictMode>

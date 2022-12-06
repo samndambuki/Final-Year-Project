@@ -1,24 +1,26 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* @import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities"; */
+
+
+.modal-wrapper {
+  position: absolute;
+  top: 0;
+  background-color: #c5c3c3c9;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-form > a {
-  margin-left: 1rem;
-}
-
-
-.errorDiv{
-  padding: 10;
-  border-radius: 10;
-  background-color: crimson;
+.modal {
+  background-color: white;
+  border-radius: 5px;
+  width: 400px;
+  height: 400px;
+  /* position: relative; */
+  position: absolute;
+  top: calc(100vh - 200px);
+  left: calc(100vw - 200px);
 }

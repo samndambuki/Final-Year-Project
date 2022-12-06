@@ -21,6 +21,7 @@ import CreateAppointment from "./appointments/CreateAppointment";
 import AuthForm from "./auth/AuthForm";
 import Menu from "./Menu";
 import IndexChat from "./components/IndexChat";
+import DiseasePrediction from "./patients/DiseasePrediction";
 
 
 const routes = 
@@ -34,9 +35,13 @@ const routes =
     {path:'/appointments/report',component:AppointmentsReport},
 
 
+    {path:'/disease/prediction',component:DiseasePrediction},
+   
+
     {path:'/doctors', component:IndexDoctors, exact:true},
     {path:'/doctors/create', component:CreateDoctor},
     {path:'/doctors/edit/:id(\\d+)', component:EditDoctor},
+
 
     {path:'/schedules', component:IndexSchedules, exact:true},
     {path:'/schedules/create', component:CreateSchedule},
